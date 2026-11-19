@@ -6,10 +6,11 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 def test_saucedemo_add_to_cart():
-    # 1. Запуск браузера Chrome
+    # 1. Налаштування Chrome
     options = webdriver.ChromeOptions()
-    
-    # Якщо тест запущено на серверах GitHub — вмикаємо фоновий режим без GUI
+    options.add_argument("--guest")
+
+    # Якщо тест запущено на GitHub Actions — вмикаємо режим без графічного вікна
     if os.getenv("GITHUB_ACTIONS") == "true":
         options.add_argument("--headless=new")
         options.add_argument("--no-sandbox")
