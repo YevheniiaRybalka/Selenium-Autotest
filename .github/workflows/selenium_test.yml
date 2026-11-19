@@ -1,0 +1,25 @@
+name: Selenium UI Test
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch: # Дозволяє запускати тест вручну кнопкою в GitHub
+
+jobs:
+  run-autotest:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Завантаження коду з репозиторію
+        uses: actions/checkout@v4
+
+      - name: Налаштування Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Встановлення бібліотек
+        run: pip install -r requirements.txt
+
+      - name: Запуск Selenium-скрипту
+        run: python test_saucedemo.py
